@@ -1,5 +1,6 @@
 import { Game } from './../models/Game';
 import { Request, Response } from 'express';
+
 import api from '../configs/api';
 import QueryBuilder from '../lib/QueryBuilder';
 
@@ -18,7 +19,7 @@ class GameController {
     const games: Game[] = apiResponse.data.map((game: any) => ({
       id: game.id,
       name: game.name,
-      coverUrl: game.cover?.url || null,
+      coverUrl: game.cover?.url || `${request.get('host')}/images/no-image.svg`,
       popularity: game.popularity,
       genres: game.genres?.map((genre: any) => genre.name) || []
     }));
