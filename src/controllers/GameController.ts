@@ -17,10 +17,7 @@ class GameController {
 
     try {
       const igdbApiResponse = await igdbApi.post('/games', query);
-      const games: Game[] = igdbApiResponse.data.map((game: any) => {
-        const mapped = GameMapper.from(game);
-        return { ...mapped, coverUrl: mapped.coverUrl || `${request.get('host')}/images/no-image.svg` };
-      });
+      const games: Game[] = igdbApiResponse.data.map((game: any) => GameMapper.from(game));
 
       return response.json(games);
     } catch (error) {

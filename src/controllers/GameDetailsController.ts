@@ -32,11 +32,7 @@ class GameDetailsController {
         return response.json({ error: 'Game not found' }).status(404);
       }
 
-      const mappedGameDetails: GameDetails = GameDetailsMapper.from(igdbApiResponse.data[0]);
-      const gameDetails: GameDetails = {
-        ...mappedGameDetails,
-        coverUrl: mappedGameDetails.coverUrl || `${request.get('host')}/images/no-image.svg`
-      };
+      const gameDetails: GameDetails = GameDetailsMapper.from(igdbApiResponse.data[0]);
 
       return response.json(gameDetails);
     } catch (error) {
