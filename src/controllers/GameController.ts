@@ -8,7 +8,7 @@ class GameController {
   async index(request: Request, response: Response) {
     const { term = '', offset = 0 } = request.query;
     const query = new QueryBuilder()
-      .select('name', 'popularity', 'genres.name', 'cover.url')
+      .select('name', 'popularity', 'genres.name', 'platforms.name', 'cover.url')
       .search(String(term))
       .offset(Number(offset))
       .sort('popularity')
@@ -21,7 +21,8 @@ class GameController {
       name: game.name,
       coverUrl: game.cover?.url || `${request.get('host')}/images/no-image.svg`,
       popularity: game.popularity,
-      genres: game.genres?.map((genre: any) => genre.name) || []
+      genres: game.genres?.map((genre: any) => genre.name) || [],
+      platforms: game.platforms?.map((platform: any) => platform.name) || []
     }));
 
     return response.json(games);

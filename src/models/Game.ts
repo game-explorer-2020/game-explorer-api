@@ -4,4 +4,5 @@ export interface Game {
   name: string;
   popularity: number;
   genres: string[];
+  platforms: string[];
 }
