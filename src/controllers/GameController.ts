@@ -14,18 +14,21 @@ class GameController {
       .sort('popularity')
       .build();
 
-    const igdbApiResponse = await igdbApi.post('/games', query);
+    try {
+      const igdbApiResponse = await igdbApi.post('/games', query);
+      const games: Game[] = igdbApiResponse.data.map((game: any) => ({
+        id: game.id,
+        name: game.name,
+        coverUrl: game.cover?.url || `${request.get('host')}/images/no-image.svg`,
+        popularity: game.popularity,
+        genres: game.genres?.map((genre: any) => genre.name) || [],
+        platforms: game.platforms?.map((platform: any) => platform.name) || []
+      }));
 
-    const games: Game[] = igdbApiResponse.data.map((game: any) => ({
-      id: game.id,
-      name: game.name,
-      coverUrl: game.cover?.url || `${request.get('host')}/images/no-image.svg`,
-      popularity: game.popularity,
-      genres: game.genres?.map((genre: any) => genre.name) || [],
-      platforms: game.platforms?.map((platform: any) => platform.name) || []
-    }));
-
-    return response.json(games);
+      return response.json(games);
+    } catch (error) {
+      return response.status(error.response.status).send(error.response.data);
+    }
   }
 }
 
