@@ -20,7 +20,7 @@ class GameController {
       name: game.name,
       coverUrl: game.cover?.url || null,
       popularity: game.popularity,
-      genres: game.genres?.map((genre: any) => genre.name) || ['No genres']
+      genres: game.genres?.map((genre: any) => genre.name) || []
     }));
 
     return response.json(games);
