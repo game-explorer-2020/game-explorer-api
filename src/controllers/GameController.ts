@@ -1,6 +1,7 @@
-import { Game } from './../models/Game';
 import { Request, Response } from 'express';
 
+import { Game } from './../models/Game';
+import GameMapper from '../mappers/GameMapper';
 import igdbApi from '../configs/igdb-api';
 import QueryBuilder from '../lib/QueryBuilder';
 
@@ -16,14 +17,10 @@ class GameController {
 
     try {
       const igdbApiResponse = await igdbApi.post('/games', query);
-      const games: Game[] = igdbApiResponse.data.map((game: any) => ({
-        id: game.id,
-        name: game.name,
-        coverUrl: game.cover?.url || `${request.get('host')}/images/no-image.svg`,
-        popularity: game.popularity,
-        genres: game.genres?.map((genre: any) => genre.name) || [],
-        platforms: game.platforms?.map((platform: any) => platform.name) || []
-      }));
+      const games: Game[] = igdbApiResponse.data.map((game: any) => {
+        const mapped = GameMapper.from(game);
+        return { ...mapped, coverUrl: mapped.coverUrl || `${request.get('host')}/images/no-image.svg` };
+      });
 
       return response.json(games);
     } catch (error) {

@@ -8,6 +8,6 @@ const gameController = new GameController();
 const gameDetailsController = new GameDetailsController();
 
 routes.get('/api/v1/games', gameController.index);
-routes.get('/api/v1/games/details/:id', gameDetailsController.find);
+routes.get('/api/v1/games/details/:id', gameDetailsController.get);
 
 export default routes;
