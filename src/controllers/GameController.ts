@@ -1,7 +1,7 @@
 import { Game } from './../models/Game';
 import { Request, Response } from 'express';
 
-import api from '../configs/api';
+import igdbApi from '../configs/igdb-api';
 import QueryBuilder from '../lib/QueryBuilder';
 
 class GameController {
@@ -14,9 +14,9 @@ class GameController {
       .sort('popularity')
       .build();
 
-    const apiResponse = await api.post('/games', query);
+    const igdbApiResponse = await igdbApi.post('/games', query);
 
-    const games: Game[] = apiResponse.data.map((game: any) => ({
+    const games: Game[] = igdbApiResponse.data.map((game: any) => ({
       id: game.id,
       name: game.name,
       coverUrl: game.cover?.url || `${request.get('host')}/images/no-image.svg`,
