@@ -1,14 +1,15 @@
+import { GameIGDB } from './../models/igdb/GameIGDB';
 import { Game } from './../models/Game';
-import CoverUrlMapper from './CoverUrlMapper';
+import getDefaultImagePath from '../utils/getDefaultImagePath';
 
 class GameMapper {
-  from(gameIGDB: any): Game {
+  from(gameIGDB: GameIGDB): Game {
     return {
       id: gameIGDB.id,
       name: gameIGDB.name,
-      coverUrl: CoverUrlMapper.from(gameIGDB),
-      genres: gameIGDB.genres?.map((genre: any) => genre.name) || [],
-      platforms: gameIGDB.platforms?.map((platform: any) => platform.name) || []
+      coverUrl: gameIGDB.cover?.url || getDefaultImagePath(),
+      genres: gameIGDB.genres?.map(genre => genre.name) || [],
+      platforms: gameIGDB.platforms?.map(platform => platform.name) || []
     };
   }
 }

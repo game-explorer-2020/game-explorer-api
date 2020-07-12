@@ -1,3 +1,4 @@
+import { GameIGDB } from './../models/igdb/GameIGDB';
 import { Request, Response } from 'express';
 
 import { Game } from './../models/Game';
@@ -16,8 +17,8 @@ class GameController {
       .build();
 
     try {
-      const igdbApiResponse = await igdbApi.post('/games', query);
-      const games: Game[] = igdbApiResponse.data.map((game: any) => GameMapper.from(game));
+      const igdbApiResponse = await igdbApi.post<GameIGDB[]>('/games', query);
+      const games: Game[] = igdbApiResponse.data.map(game => GameMapper.from(game));
 
       return response.json(games);
     } catch (error) {

@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import GameDetailsMapper from '../mappers/GameDetailsMapper';
 import igdbApi from '../configs/igdb-api';
 import QueryBuilder from '../lib/QueryBuilder';
+import { GameDetailsIGDB } from '../models/igdb/GameDetailsIGDB';
 
 class GameDetailsController {
   async get(request: Request, response: Response) {
@@ -27,7 +28,7 @@ class GameDetailsController {
       .build();
 
     try {
-      const igdbApiResponse = await igdbApi.post('/games', query);
+      const igdbApiResponse = await igdbApi.post<GameDetailsIGDB[]>('/games', query);
 
       if (!igdbApiResponse.data.length) {
         return response.json({ error: 'Game not found' }).status(404);

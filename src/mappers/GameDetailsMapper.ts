@@ -1,23 +1,24 @@
-import GameMapper from './GameMapper';
-import CoverUrlMapper from './CoverUrlMapper';
+import { GameDetailsIGDB } from './../models/igdb/GameDetailsIGDB';
 import { GameDetails } from './../models/GameDetails';
+import GameMapper from './GameMapper';
+import getDefaultImagePath from '../utils/getDefaultImagePath';
 
 class GameDetailsMapper {
-  from(gameIGDB: any): GameDetails {
-    const mappedGame = GameMapper.from(gameIGDB);
+  from(gameDetailsIGDB: GameDetailsIGDB): GameDetails {
+    const mappedGame = GameMapper.from(gameDetailsIGDB);
 
     return {
       ...mappedGame,
-      releaseDate: gameIGDB.first_release_date,
-      summary: gameIGDB.summary,
-      involvedCompanies: gameIGDB.involved_companies?.map((involvedCompany: any) => involvedCompany?.company?.name || null) || [],
-      aggregatedRating: gameIGDB.aggregated_rating,
-      aggregatedRatingCount: gameIGDB.aggregated_rating_count,
-      rating: gameIGDB.rating,
-      ratingCount: gameIGDB.rating_count,
-      similarGames: (gameIGDB.similar_games || []).map((game: any) => ({
+      releaseDate: gameDetailsIGDB.first_release_date,
+      summary: gameDetailsIGDB.summary,
+      involvedCompanies: gameDetailsIGDB.involved_companies?.map(involvedCompany => involvedCompany?.company?.name) || [],
+      aggregatedRating: gameDetailsIGDB.aggregated_rating,
+      aggregatedRatingCount: gameDetailsIGDB.aggregated_rating_count,
+      rating: gameDetailsIGDB.rating,
+      ratingCount: gameDetailsIGDB.rating_count,
+      similarGames: (gameDetailsIGDB.similar_games || []).map(game => ({
         id: game.id,
-        coverUrl: CoverUrlMapper.from(game)
+        coverUrl: game.cover?.url || getDefaultImagePath()
       }))
     };
   }

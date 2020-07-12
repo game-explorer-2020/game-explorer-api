@@ -1,3 +1,4 @@
+import { PulseIGDB } from './../models/igdb/PulseIGDB';
 import { Request, Response } from 'express';
 
 import { Feed } from './../models/Feed';
@@ -16,8 +17,8 @@ class FeedController {
       .build();
 
     try {
-      const igdbApiResponse = await igdbApi.post('/pulses', query);
-      const feeds: Feed[] = igdbApiResponse.data.map((pulse: any) => FeedMapper.from(pulse));
+      const igdbApiResponse = await igdbApi.post<PulseIGDB[]>('/pulses', query);
+      const feeds: Feed[] = igdbApiResponse.data.map(pulse => FeedMapper.from(pulse));
 
       return response.json(feeds);
     } catch (error) {
