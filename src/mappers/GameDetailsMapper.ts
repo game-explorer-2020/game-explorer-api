@@ -1,4 +1,5 @@
 import GameMapper from './GameMapper';
+import CoverUrlMapper from './CoverUrlMapper';
 import { GameDetails } from './../models/GameDetails';
 
 class GameDetailsMapper {
@@ -16,7 +17,7 @@ class GameDetailsMapper {
       ratingCount: gameIGDB.rating_count,
       similarGames: (gameIGDB.similar_games || []).map((game: any) => ({
         id: game.id,
-        coverUrl: game.cover?.url || `${process.env.APP_URL}/images/no-image.svg`
+        coverUrl: CoverUrlMapper.from(game)
       }))
     };
   }
