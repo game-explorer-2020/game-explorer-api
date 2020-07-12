@@ -2,7 +2,7 @@ import { SimilarGame } from './SimilarGame';
 import { Game } from './Game';
 
 export interface GameDetails extends Game {
-  releaseDate: Date;
+  releaseDate: number; // unix timestamp
   summary: string;
   involvedCompanies: string[];
   rating: number;

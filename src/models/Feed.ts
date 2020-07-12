@@ -3,5 +3,5 @@ export interface Feed {
   title: string;
   url: string;
   imageUrl: string;
-  publishedAt: number;
+  publishedAt: number; // unix timestamp
 }
