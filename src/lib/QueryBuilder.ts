@@ -54,7 +54,7 @@ class QueryBuilder {
   build(): string {
     let query = '';
 
-    if (this.fields) {
+    if (this.fields?.length) {
       query += this.buildFields();
     }
 
