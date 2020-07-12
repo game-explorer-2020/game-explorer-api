@@ -4,6 +4,8 @@ API que extrai os dados da [IGDB](https://www.igdb.com/api) e os traz devidament
 
 ## Endpoints
 
+### Games
+
 - `/api/v1/games?term=MySearchTerm&offset=3`: lista os jogos ordenados por popularidade.
 
   - `term`: termo de busca utilizado para filtrar os jogos. Não é obrigatório.
@@ -51,4 +53,22 @@ API que extrai os dados da [IGDB](https://www.igdb.com/api) e os traz devidament
         }
       ]
     }
+    ```
+
+### Feeds
+
+- `/api/v1/feeds`: lista os as últimas notícias/artigos de games.
+
+  - Exemplo de resposta:
+
+    ```json
+    [
+      {
+        "id": 928108,
+        "title": "Watch Dogs 2 Free Claim Not Working, Ubisoft Locking Spammers With Multiple Account",
+        "imageUrl": "https://gamertweak.com/wp-content/uploads/2020/07/watch-dogs-2-free-copy.jpg",
+        "publishedAt": 1594512000,
+        "url": "https://gamertweak.com/watch-dogs-2-free-claim/"
+      }
+    ]
     ```
