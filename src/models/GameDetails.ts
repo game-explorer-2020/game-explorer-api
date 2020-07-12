@@ -2,7 +2,7 @@ import { Game } from './Game';
 
 export interface GameDetails extends Omit<Game, 'popularity'> {
   releaseDate: Date;
-  storyline: string;
+  summary: string;
   involvedCompanies: string[];
   rating: number;
   ratingCount: number;

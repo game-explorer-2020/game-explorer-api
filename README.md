@@ -35,7 +35,7 @@ API que extrai os dados da [IGDB](https://www.igdb.com/api) e os traz devidament
       "genres": ["Fighting", "Adventure"],
       "platforms": ["PC (Microsoft Windows)", "Xbox Live Arcade", "PlayStation Network", "PlayStation 4"],
       "releaseDate": "2013-12-17T00:00:00.000Z",
-      "storyline": "Born a slave, Adéwalé found freedom as a pirate aboard the Jackdaw as Captain Edward Kenway's Quartermaster. Fifteen years later, Adéwalé has become a trained assassin and finds himself shipwrecked in Saint-Domingue with no weapon and no crew helping him out. So unfolds a new adventure,",
+      "summary": "Born a slave, Adéwalé found freedom as a pirate aboard the Jackdaw as Captain Edward Kenway's Quartermaster. Fifteen years later, Adéwalé has become a trained assassin and finds himself shipwrecked in Saint-Domingue with no weapon and no crew helping him out. So unfolds a new adventure,",
       "involvedCompanies": ["Ubisoft Entertainment", "Ubisoft Montreal", "Ubisoft Québec"],
       "aggregatedRating": 75,
       "aggregatedRatingCount": 3,

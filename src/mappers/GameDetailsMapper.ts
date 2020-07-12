@@ -8,7 +8,7 @@ class GameDetailsMapper {
     return {
       ...mappedGame,
       releaseDate: new Date(gameIGDB.first_release_date * 1000),
-      storyline: gameIGDB.storyline,
+      summary: gameIGDB.summary,
       involvedCompanies: gameIGDB.involved_companies?.map((involvedCompany: any) => involvedCompany?.company?.name || null) || [],
       aggregatedRating: gameIGDB.aggregated_rating,
       aggregatedRatingCount: gameIGDB.aggregated_rating_count,

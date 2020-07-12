@@ -15,7 +15,7 @@ class GameDetailsController {
         'platforms.name',
         'cover.url',
         'first_release_date',
-        'storyline',
+        'summary',
         'involved_companies.company.name',
         'aggregated_rating',
         'aggregated_rating_count',
