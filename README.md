@@ -40,7 +40,17 @@ API que extrai os dados da [IGDB](https://www.igdb.com/api) e os traz devidament
       "aggregatedRating": 75,
       "aggregatedRatingCount": 3,
       "rating": 70.1997066569437,
-      "ratingCount": 107
+      "ratingCount": 107,
+      "similarGames": [
+        {
+          "id": 1266,
+          "coverUrl": "//images.igdb.com/igdb/image/upload/t_thumb/co1xii.jpg"
+        },
+        {
+          "id": 7570,
+          "coverUrl": "//images.igdb.com/igdb/image/upload/t_thumb/co1xir.jpg"
+        }
+      ]
     }
     ```
 
