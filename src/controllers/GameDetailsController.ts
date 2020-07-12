@@ -20,7 +20,8 @@ class GameDetailsController {
         'aggregated_rating',
         'aggregated_rating_count',
         'rating',
-        'rating_count'
+        'rating_count',
+        'similar_games.cover.url'
       )
       .where(`id = ${id}`)
       .build();

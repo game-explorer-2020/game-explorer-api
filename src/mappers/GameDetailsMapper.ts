@@ -13,7 +13,11 @@ class GameDetailsMapper {
       aggregatedRating: gameIGDB.aggregated_rating,
       aggregatedRatingCount: gameIGDB.aggregated_rating_count,
       rating: gameIGDB.rating,
-      ratingCount: gameIGDB.rating_count
+      ratingCount: gameIGDB.rating_count,
+      similarGames: (gameIGDB.similar_games || []).map((game: any) => ({
+        id: game.id,
+        coverUrl: game.cover?.url || `${process.env.APP_URL}/images/no-image.svg`
+      }))
     };
   }
 }

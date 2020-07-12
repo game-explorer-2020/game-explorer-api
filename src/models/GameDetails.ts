@@ -1,3 +1,4 @@
+import { SimilarGame } from './SimilarGame';
 import { Game } from './Game';
 
 export interface GameDetails extends Omit<Game, 'popularity'> {
@@ -8,4 +9,5 @@ export interface GameDetails extends Omit<Game, 'popularity'> {
   ratingCount: number;
   aggregatedRating: number;
   aggregatedRatingCount: number;
+  similarGames: SimilarGame[];
 }
