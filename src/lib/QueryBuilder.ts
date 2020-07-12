@@ -1,5 +1,3 @@
-type Operator = '=' | '!=' | '>' | '>=' | '<' | '<=' | '~';
-
 class QueryBuilder {
   private fields: string[];
   private whereSentence: string | null;
