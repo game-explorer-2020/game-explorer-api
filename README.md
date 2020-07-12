@@ -16,7 +16,6 @@ API que extrai os dados da [IGDB](https://www.igdb.com/api) e os traz devidament
         "id": 115278,
         "name": "Rune Factory 4 Special",
         "coverUrl": "//images.igdb.com/igdb/image/upload/t_thumb/co203s.jpg",
-        "popularity": 2090.622837928576,
         "genres": ["Role-playing (RPG)"],
         "platforms": ["Nintendo Switch"]
       }
@@ -34,7 +33,7 @@ API que extrai os dados da [IGDB](https://www.igdb.com/api) e os traz devidament
       "coverUrl": "//images.igdb.com/igdb/image/upload/t_thumb/co1uue.jpg",
       "genres": ["Fighting", "Adventure"],
       "platforms": ["PC (Microsoft Windows)", "Xbox Live Arcade", "PlayStation Network", "PlayStation 4"],
-      "releaseDate": "2013-12-17T00:00:00.000Z",
+      "releaseDate": 1387238400,
       "summary": "Born a slave, Adéwalé found freedom as a pirate aboard the Jackdaw as Captain Edward Kenway's Quartermaster. Fifteen years later, Adéwalé has become a trained assassin and finds himself shipwrecked in Saint-Domingue with no weapon and no crew helping him out. So unfolds a new adventure,",
       "involvedCompanies": ["Ubisoft Entertainment", "Ubisoft Montreal", "Ubisoft Québec"],
       "aggregatedRating": 75,
@@ -53,10 +52,3 @@ API que extrai os dados da [IGDB](https://www.igdb.com/api) e os traz devidament
       ]
     }
     ```
-
-## TODO
-
-- [x] Criar mapper separado para mapear os dados da IGDB para as interfaces da aplicação
-- [ ] Criar os endpoints de feed
-- [x] Fazer deploy
-- [ ] Escrever testes com Jest
