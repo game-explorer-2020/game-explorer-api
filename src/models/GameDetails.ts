@@ -1,7 +1,7 @@
 import { SimilarGame } from './SimilarGame';
 import { Game } from './Game';
 
-export interface GameDetails extends Omit<Game, 'popularity'> {
+export interface GameDetails extends Game {
   releaseDate: Date;
   summary: string;
   involvedCompanies: string[];

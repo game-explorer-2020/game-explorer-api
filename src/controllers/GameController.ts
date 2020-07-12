@@ -9,7 +9,7 @@ class GameController {
   async index(request: Request, response: Response) {
     const { term = '', offset = 0 } = request.query;
     const query = new QueryBuilder()
-      .select('name', 'popularity', 'genres.name', 'platforms.name', 'cover.url')
+      .select('name', 'genres.name', 'platforms.name', 'cover.url')
       .search(String(term))
       .offset(Number(offset))
       .sort('popularity')
