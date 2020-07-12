@@ -1,6 +1,6 @@
 # Game Explorer API
 
-API que extrai os dados da [IGDB](https://www.igdb.com/api) e os traz devidamente formatados.
+API que extrai os dados da [IGDB](https://www.igdb.com/api) e os traz formatados para utilizar no Game Explorer.
 
 ## Endpoints
 
