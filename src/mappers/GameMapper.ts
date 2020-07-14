@@ -7,7 +7,7 @@ class GameMapper {
     return {
       id: gameIGDB.id,
       name: gameIGDB.name,
-      coverUrl: gameIGDB.cover?.url || getDefaultImagePath(),
+      coverUrl: gameIGDB.cover?.url?.replace('//images.igdb', 'https://images.igdb') || getDefaultImagePath(),
       genres: gameIGDB.genres?.map(genre => genre.name) || [],
       platforms: gameIGDB.platforms?.map(platform => platform.name) || []
     };

@@ -18,7 +18,7 @@ class GameDetailsMapper {
       ratingCount: gameDetailsIGDB.rating_count,
       similarGames: (gameDetailsIGDB.similar_games || []).map(game => ({
         id: game.id,
-        coverUrl: game.cover?.url || getDefaultImagePath()
+        coverUrl: game.cover?.url?.replace('//images.igdb', 'https://images.igdb') || getDefaultImagePath()
       }))
     };
   }
