@@ -1,1 +1,1 @@
-export default () => `${process.env.APP_URL}/images/no-image.svg`;
+export default () => `${process.env.APP_URL}/images/no-image.jpg`;
