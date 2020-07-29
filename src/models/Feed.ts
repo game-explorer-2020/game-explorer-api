@@ -4,4 +4,5 @@ export interface Feed {
   url: string;
   imageUrl: string;
   publishedAt: number; // unix timestamp
+  favorite?: boolean;
 }

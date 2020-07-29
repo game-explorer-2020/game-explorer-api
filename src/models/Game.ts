@@ -4,4 +4,5 @@ export interface Game {
   name: string;
   genres: string[];
   platforms: string[];
+  favorite?: boolean;
 }
