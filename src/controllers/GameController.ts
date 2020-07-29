@@ -3,6 +3,8 @@ import { Request, Response } from 'express';
 
 import { Game } from './../models/Game';
 import GameMapper from '../mappers/GameMapper';
+import GameSchema from '../schemas/GameSchema';
+
 import igdbApi from '../configs/igdb-api';
 import QueryBuilder from '../lib/QueryBuilder';
 
@@ -19,8 +21,13 @@ class GameController {
     try {
       const igdbApiResponse = await igdbApi.post<GameIGDB[]>('/games', query);
       const games: Game[] = igdbApiResponse.data.map(game => GameMapper.from(game));
+      const favoriteGames = await GameSchema.find().where('id').in(games.map(g => g.id));
+      const favoritableGames = games.map(game => ({
+        ...game,
+        favorite: favoriteGames.some(g => g.id === game.id)
+      }));
 
-      return response.json(games);
+      return response.json(favoritableGames);
     } catch (error) {
       return response.status(error.response.status).send(error.response.data);
     }

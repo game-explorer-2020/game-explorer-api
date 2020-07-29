@@ -2,6 +2,8 @@ import { GameDetails } from './../models/GameDetails';
 import { Request, Response } from 'express';
 
 import GameDetailsMapper from '../mappers/GameDetailsMapper';
+import GameSchema from '../schemas/GameSchema';
+
 import igdbApi from '../configs/igdb-api';
 import QueryBuilder from '../lib/QueryBuilder';
 import { GameDetailsIGDB } from '../models/igdb/GameDetailsIGDB';
@@ -35,8 +37,13 @@ class GameDetailsController {
       }
 
       const gameDetails: GameDetails = GameDetailsMapper.from(igdbApiResponse.data[0]);
+      const favoriteGame = await GameSchema.findOne({ id: gameDetails.id });
+      const favoritableGameDetails: GameDetails = {
+        ...gameDetails,
+        favorite: !!favoriteGame
+      }
 
-      return response.json(gameDetails);
+      return response.json(favoritableGameDetails);
     } catch (error) {
       return response.status(error.response.status).send(error.response.data);
     }
