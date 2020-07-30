@@ -2,6 +2,7 @@ import { GameDetailsIGDB } from './../models/igdb/GameDetailsIGDB';
 import { GameDetails } from './../models/GameDetails';
 import GameMapper from './GameMapper';
 import getDefaultImagePath from '../utils/getDefaultImagePath';
+import getResizedGameImagePath from '../utils/getResizedGameImagePath';
 
 class GameDetailsMapper {
   from(gameDetailsIGDB: GameDetailsIGDB): GameDetails {
@@ -18,7 +19,7 @@ class GameDetailsMapper {
       ratingCount: gameDetailsIGDB.rating_count,
       similarGames: (gameDetailsIGDB.similar_games || []).map(game => ({
         id: game.id,
-        coverUrl: game.cover?.url?.replace('//images.igdb', 'https://images.igdb') || getDefaultImagePath()
+        coverUrl: getResizedGameImagePath(game.cover?.url) || getDefaultImagePath()
       }))
     };
   }
