@@ -20,7 +20,9 @@ class FeedController {
     try {
       const igdbApiResponse = await igdbApi.post<PulseIGDB[]>('/pulses', query);
       const feeds: Feed[] = igdbApiResponse.data.map(pulse => FeedMapper.from(pulse));
-      const favoriteFeeds = await FeedSchema.find().where('id').in(feeds.map(f => f.id));
+      const favoriteFeeds = await FeedSchema.find()
+        .where('id')
+        .in(feeds.map(f => f.id));
       const favoritableFeeds = feeds.map(feed => ({
         ...feed,
         favorite: favoriteFeeds.some(f => f.id === feed.id)

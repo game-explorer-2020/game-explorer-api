@@ -21,7 +21,9 @@ class GameController {
     try {
       const igdbApiResponse = await igdbApi.post<GameIGDB[]>('/games', query);
       const games: Game[] = igdbApiResponse.data.map(game => GameMapper.from(game));
-      const favoriteGames = await GameSchema.find().where('id').in(games.map(g => g.id));
+      const favoriteGames = await GameSchema.find()
+        .where('id')
+        .in(games.map(g => g.id));
       const favoritableGames = games.map(game => ({
         ...game,
         favorite: favoriteGames.some(g => g.id === game.id)
