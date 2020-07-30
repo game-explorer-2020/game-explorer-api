@@ -1,12 +1,13 @@
-import { GameDetails } from './../models/GameDetails';
 import { Request, Response } from 'express';
+
+import { GameDetails } from './../models/GameDetails';
+import { GameDetailsIGDB } from '../models/igdb/GameDetailsIGDB';
 
 import GameDetailsMapper from '../mappers/GameDetailsMapper';
 import GameSchema from '../schemas/GameSchema';
 
 import igdbApi from '../configs/igdb-api';
 import QueryBuilder from '../lib/QueryBuilder';
-import { GameDetailsIGDB } from '../models/igdb/GameDetailsIGDB';
 
 class GameDetailsController {
   async get(request: Request, response: Response) {
@@ -41,7 +42,7 @@ class GameDetailsController {
       const favoritableGameDetails: GameDetails = {
         ...gameDetails,
         favorite: !!favoriteGame
-      }
+      };
 
       return response.json(favoritableGameDetails);
     } catch (error) {
