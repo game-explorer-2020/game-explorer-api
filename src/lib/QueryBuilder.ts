@@ -5,7 +5,6 @@ class QueryBuilder {
   private whereSentence: string | null;
   private sortField: string | null;
   private sortOrder: 'asc' | 'desc';
-  private searchTerm: string | null;
   private pageValue: number;
 
   constructor() {
@@ -13,7 +12,6 @@ class QueryBuilder {
     this.whereSentence = null;
     this.sortField = null;
     this.sortOrder = 'desc';
-    this.searchTerm = null;
     this.pageValue = 0;
   }
 
@@ -39,13 +37,6 @@ class QueryBuilder {
     return this;
   }
 
-  search(term: string): this {
-    if (term) {
-      this.searchTerm = term;
-    }
-    return this;
-  }
-
   page(pageValue: number): this {
     if (pageValue) {
       this.pageValue = pageValue;
@@ -60,14 +51,12 @@ class QueryBuilder {
       query += this.buildFields();
     }
 
-    if (this.whereSentence) {
-      query += this.buildWhere();
+    if (this.sortField) {
+      query += this.buildSort();
     }
 
-    if (this.searchTerm) {
-      query += this.buildSearch();
-    } else if (this.sortField) {
-      query += this.buildSort();
+    if (this.whereSentence) {
+      query += this.buildWhere();
     }
 
     if (this.pageValue) {
@@ -87,10 +76,6 @@ class QueryBuilder {
 
   private buildSort(): string {
     return `sort ${this.sortField} ${this.sortOrder};`;
-  }
-
-  private buildSearch(): string {
-    return `search "${this.searchTerm}";`;
   }
 
   private buildOffset(): string {

@@ -16,7 +16,7 @@ class GameController {
     const { term = '', page = 0 } = request.query;
     const query = new QueryBuilder()
       .select(...this.fields)
-      .search(String(term))
+      .where(`name ~ *"${term}"*`)
       .page(Number(page))
       .sort('popularity')
       .build();
@@ -39,7 +39,7 @@ class GameController {
   }
 
   async getFavorites(request: Request, response: Response) {
-    const { page = 0 } = request.query;
+    const { term = '', page = 0 } = request.query;
     const favoriteGames = await GameSchema.find();
 
     if (!favoriteGames.length) {
@@ -48,7 +48,7 @@ class GameController {
 
     const query = new QueryBuilder()
       .select(...this.fields)
-      .where(`id = (${favoriteGames.map(g => g.id)})`)
+      .where(`id = (${favoriteGames.map(g => g.id)}) & name ~ *"${term}"*`)
       .page(Number(page))
       .sort('popularity')
       .build();
