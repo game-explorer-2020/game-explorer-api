@@ -6,7 +6,7 @@ API que extrai os dados da [IGDB](https://www.igdb.com/api) e os traz formatados
 
 ### Games
 
-- `/api/v1/games?term=MySearchTerm&page=3`: lista os jogos ordenados por popularidade.
+- GET `/api/v1/games?term=MySearchTerm&page=3`: lista os jogos ordenados por popularidade.
 
   - `term`: termo de busca utilizado para filtrar os jogos. Não é obrigatório.
   - `page`: página desejada. Não é obrigatório. Padrão `0`.
@@ -24,7 +24,27 @@ API que extrai os dados da [IGDB](https://www.igdb.com/api) e os traz formatados
     ]
     ```
 
-- `/api/v1/games/details/:gameId`: traz os detalhes do jogo desejado.
+- GET `/api/v1/games/favorites?term=MySearchTerm&page=3`: lista os jogos favoritos.
+
+  - `term`: termo de busca utilizado para filtrar os jogos. Não é obrigatório.
+  - `page`: página desejada. Não é obrigatório. Padrão `0`.
+  - Exemplo de resposta:
+
+    ```json
+    [
+      {
+        "id": 115278,
+        "name": "Rune Factory 4 Special",
+        "coverUrl": "//images.igdb.com/igdb/image/upload/t_thumb/co203s.jpg",
+        "genres": ["Role-playing (RPG)"],
+        "platforms": ["Nintendo Switch"]
+      }
+    ]
+    ```
+
+- PUT `/api/v1/games/favorites/:id`: favorita/desfavorita o jogo desejado.
+
+- GET `/api/v1/games/details/:gameId`: traz os detalhes do jogo desejado.
 
   - Exemplo de resposta:
 
@@ -57,7 +77,7 @@ API que extrai os dados da [IGDB](https://www.igdb.com/api) e os traz formatados
 
 ### Feeds
 
-- `/api/v1/feeds`: lista os as últimas notícias/artigos de games.
+- GET `/api/v1/feeds`: lista os as últimas notícias/artigos de games.
 
   - Exemplo de resposta:
 
@@ -72,3 +92,21 @@ API que extrai os dados da [IGDB](https://www.igdb.com/api) e os traz formatados
       }
     ]
     ```
+
+- GET `/api/v1/feeds/favorites`: lista os as notícias/artigos favoritos.
+
+  - Exemplo de resposta:
+
+    ```json
+    [
+      {
+        "id": 928108,
+        "title": "Watch Dogs 2 Free Claim Not Working, Ubisoft Locking Spammers With Multiple Account",
+        "imageUrl": "https://gamertweak.com/wp-content/uploads/2020/07/watch-dogs-2-free-copy.jpg",
+        "publishedAt": 1594512000,
+        "url": "https://gamertweak.com/watch-dogs-2-free-claim/"
+      }
+    ]
+    ```
+
+- PUT `/api/v1/feeds/favorites/:id`: favorita/desfavorita o feed desejado.
