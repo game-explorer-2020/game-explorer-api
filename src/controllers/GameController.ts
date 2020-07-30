@@ -41,6 +41,11 @@ class GameController {
   async getFavorites(request: Request, response: Response) {
     const { offset = 0 } = request.query;
     const favoriteGames = await GameSchema.find();
+
+    if (!favoriteGames.length) {
+      return response.json([]);
+    }
+
     const query = new QueryBuilder()
       .select(...this.fields)
       .where(`id = (${favoriteGames.map(g => g.id)})`)

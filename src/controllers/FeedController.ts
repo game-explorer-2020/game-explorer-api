@@ -40,6 +40,11 @@ class FeedController {
   async getFavorites(request: Request, response: Response) {
     const { offset = 0 } = request.query;
     const favoriteFeeds = await FeedSchema.find();
+
+    if (!favoriteFeeds.length) {
+      return response.json([]);
+    }
+
     const query = new QueryBuilder()
       .select(...this.fields)
       .where(`id = (${favoriteFeeds.map(f => f.id)})`)
