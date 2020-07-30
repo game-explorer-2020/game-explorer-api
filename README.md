@@ -6,10 +6,10 @@ API que extrai os dados da [IGDB](https://www.igdb.com/api) e os traz formatados
 
 ### Games
 
-- `/api/v1/games?term=MySearchTerm&offset=3`: lista os jogos ordenados por popularidade.
+- `/api/v1/games?term=MySearchTerm&page=3`: lista os jogos ordenados por popularidade.
 
   - `term`: termo de busca utilizado para filtrar os jogos. Não é obrigatório.
-  - `offset`: página desejada. Não é obrigatório. Padrão `0`.
+  - `page`: página desejada. Não é obrigatório. Padrão `0`.
   - Exemplo de resposta:
 
     ```json

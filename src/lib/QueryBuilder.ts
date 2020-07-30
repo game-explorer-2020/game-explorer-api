@@ -1,10 +1,12 @@
 class QueryBuilder {
+  private readonly itemsPerPage = 10;
+
   private fields: string[];
   private whereSentence: string | null;
   private sortField: string | null;
   private sortOrder: 'asc' | 'desc';
   private searchTerm: string | null;
-  private offsetValue: number;
+  private pageValue: number;
 
   constructor() {
     this.fields = [];
@@ -12,7 +14,7 @@ class QueryBuilder {
     this.sortField = null;
     this.sortOrder = 'desc';
     this.searchTerm = null;
-    this.offsetValue = 0;
+    this.pageValue = 0;
   }
 
   select(...fields: string[]): this {
@@ -44,9 +46,9 @@ class QueryBuilder {
     return this;
   }
 
-  offset(offsetValue: number): this {
-    if (offsetValue) {
-      this.offsetValue = offsetValue;
+  page(pageValue: number): this {
+    if (pageValue) {
+      this.pageValue = pageValue;
     }
     return this;
   }
@@ -68,7 +70,7 @@ class QueryBuilder {
       query += this.buildSort();
     }
 
-    if (this.offsetValue) {
+    if (this.pageValue) {
       query += this.buildOffset();
     }
 
@@ -92,7 +94,7 @@ class QueryBuilder {
   }
 
   private buildOffset(): string {
-    return `offset ${this.offsetValue};`;
+    return `offset ${this.pageValue * this.itemsPerPage};`;
   }
 }
 

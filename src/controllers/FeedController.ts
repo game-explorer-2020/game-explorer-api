@@ -13,11 +13,11 @@ class FeedController {
   private fields = ['title', 'published_at', 'website.url', 'image'];
 
   async index(request: Request, response: Response) {
-    const { offset = 0 } = request.query;
+    const { page = 0 } = request.query;
     const query = new QueryBuilder()
       .select(...this.fields)
       .sort('published_at')
-      .offset(Number(offset))
+      .page(Number(page))
       .build();
 
     try {
@@ -38,7 +38,7 @@ class FeedController {
   }
 
   async getFavorites(request: Request, response: Response) {
-    const { offset = 0 } = request.query;
+    const { page = 0 } = request.query;
     const favoriteFeeds = await FeedSchema.find();
 
     if (!favoriteFeeds.length) {
@@ -49,7 +49,7 @@ class FeedController {
       .select(...this.fields)
       .where(`id = (${favoriteFeeds.map(f => f.id)})`)
       .sort('published_at')
-      .offset(Number(offset))
+      .page(Number(page))
       .build();
 
     try {
